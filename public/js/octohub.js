@@ -114,9 +114,9 @@
     return new Handlebars.SafeString(out + '</ol>');
   });
 
-  var byUpdateTimeDesc = function (a, b) {
-    if (new Date(a.updated_at) < new Date(b.updated_at)) return 1;
-    if (new Date(a.updated_at) > new Date(b.updated_at)) return -1;
+  var byPushTimeDesc = function (a, b) {
+    if (new Date(a.pushed_at) < new Date(b.pushed_at)) return 1;
+    if (new Date(a.pushed_at) > new Date(b.pushed_at)) return -1;
     return 0;
   }
 
@@ -316,7 +316,7 @@
           var user = $(this).text();
 
           github.repos(user, unlessError(function (repos) {
-            var context = { repos: repos.sort(byUpdateTimeDesc) };
+            var context = { repos: repos.sort(byPushTimeDesc) };
 
             $('#commits, #commit-details').hide();
 
@@ -329,7 +329,7 @@
           var org = $(this).text();
 
           github.organization(org).repos(unlessError(function (repos) {
-            var context = { repos: repos.sort(byUpdateTimeDesc) };
+            var context = { repos: repos.sort(byPushTimeDesc) };
 
             $('#commits, #commit-details').hide();
 
