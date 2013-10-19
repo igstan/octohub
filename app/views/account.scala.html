@@ -16,8 +16,12 @@
 <script>
 var OAUTH_DATA = @Html(oauth);
 
-if (!OAUTH_DATA) {
-  window.location = "/github"
+if (!localStorage.authToken) {
+  if (!OAUTH_DATA) {
+    window.location = "/github"
+  } else {
+    localStorage.authToken = OAUTH_DATA.access_token;
+  }
 }
 </script>
 </head>

@@ -8,22 +8,6 @@
   };
 
   var withToken = function (fn) {
-    if (!localStorage.authToken) {
-      localStorage.authToken = OAUTH_DATA.access_token;
-      // $('#login').show();
-      // $('#token').focus();
-      // $('#login-btn').click(function (event) {
-      //   var token = $('#token').val();
-
-      //   if (token) {
-      //     localStorage.authToken = token;
-      //     $('#login').blur().hide();
-      //     showHelp();
-      //     fn(token);
-      //   }
-      // });
-    }
-
     fn(localStorage.authToken);
   };
 
