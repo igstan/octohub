@@ -6,6 +6,10 @@
   global.octohub.parseLinks = function parseLinks(header) {
     var rels = {};
 
+    if (!header) {
+      return rels;
+    }
+
     _.map(header.split(','), function (part) {
       var parts = part.trim().split(';');
       var rel = /^rel="([^"]+)"$/.exec(parts[1].trim())[1];

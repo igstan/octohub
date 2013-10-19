@@ -1,5 +1,9 @@
 ;(function (global) {
 
+  test('parse undefined into an empty object', function () {
+    deepEqual(octohub.parseLinks(undefined), {});
+  });
+
   test('parse Link headers containing "next" and "last" rels', function () {
     var links = octohub.parseLinks('<https://api.github.com/user/49002/repos?page=2>; rel="next", <https://api.github.com/user/49002/repos?page=2>; rel="last"')
 
