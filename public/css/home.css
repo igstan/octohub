@@ -23,11 +23,12 @@ h3 {
 }
 p {
   width: 830px;
-  margin: 20px auto 30px auto;
+  margin: 15px auto 15px auto;
   font-size: 80%;
   text-align: justify;
 }
 .screens {
+  margin-top: 40px;
   text-align: center;
 }
 header, footer {
