@@ -20,6 +20,27 @@
 <p>An <a href="https://github.com/igstan/octohub">open-source</a> alternative
   web UI for <a href="https://github.com">GitHub</a>.</p>
 
+<h3>Motivation</h3>
+
+<p>Although I'm not a heavy Vim or Emacs user, I do use shortcuts. A lot. I'm also
+  using GitHub a lot, but their web interface is not particulary shortcut friendly.</p>
+
+<p>At some point I had the idea of mapping GitHub data onto
+  <a href="http://en.wikipedia.org/wiki/Miller_columns">Miller columns</a> and
+  provide decent shorcuts for navigating between these columns (arrows mostly).
+  The end result is this project. Far from being usable on a daily basis, but I
+  think it's a good start. For my needs at least.</p>
+
+<h3>Data Privacy</h3>
+
+<p>If you want to try out this UI you might wonder what I'm doing with your
+  data. It's open-source, you can check for youself, but the TL;DR version is
+  that I'm not doing anything. The server-side component of this project is
+  only used to obtain an OAuth token from GitHub, which is then used by the
+  client-side code to retrieve data using the GitHub API. I'm also not storing
+  the OAuth token in any way on the server (database or logs). Persistence is
+  achieved using <code>localStorage</code>.</p>
+
 <div class="screens">
   <a href="@connectUrl"><img alt="screen 01" src="/img/screen-01.png" width="920"></a>
   <a href="@connectUrl"><img alt="screen 02" src="/img/screen-02.png" width="920"></a>
