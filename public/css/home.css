@@ -1,0 +1,104 @@
+body {
+  font-size: 100%;
+  margin: 0;
+  padding: 0 0 100px 0;
+  color: #333;
+  background: white url(/img/noise.png);
+  font-family: menlo, monaco, courier, 'courier new', monospace;
+}
+a:link, a:visited {
+  color: blue;
+}
+h1, h3 {
+  text-align: left;
+  margin: 0;
+  font-size: 460%;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-weight: normal;
+}
+h3 {
+  width: 830px;
+  font-size: 250%;
+  margin: 15px auto 0 auto;
+}
+p {
+  width: 830px;
+  margin: 20px auto 30px auto;
+  font-size: 80%;
+  text-align: justify;
+}
+.screens {
+  text-align: center;
+}
+header, footer {
+  text-align: right;
+  width: 830px;
+  margin: 35px auto 20px auto;
+  border-bottom: dotted #999 1px;
+}
+
+header {
+    display: inline-block;
+}
+header:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
+header {
+    display: block;
+}
+
+footer {
+  border-top: dotted #999 1px;
+  border-bottom: 0;
+}
+header h1 {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+header .connect-area, footer .connect-area {
+  float: right;
+  margin: 21px 0 0 0;
+}
+footer .connect-area {
+  margin: 17px 0 0 0;
+}
+
+label {
+  font-size: 80%;
+  vertical-align: middle;
+  display: inline-block;
+  margin-top: 5px;
+}
+input[type=checkbox] {
+  margin: 0 0 0 0;
+}
+.connect:link, .connect:visited {
+  width: 95px;
+  display: inline-block;
+  text-align: left;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 25px 15px 15px;
+
+  background: #f0f0f0 url(../img/GitHub-Mark-32px.png) no-repeat 91% 50%; /* fallback color if gradients are not supported */
+  background: url(../img/noise.png), url(../img/GitHub-Mark-32px.png) no-repeat 91% 50%, -webkit-linear-gradient(top, #f0f0f0, #ccc); /* For Chrome and Safari */
+  background: url(../img/noise.png), url(../img/GitHub-Mark-32px.png) no-repeat 91% 50%,    -moz-linear-gradient(top, #f0f0f0, #ccc); /* For old Fx (3.6 to 15) */
+  background: url(../img/noise.png), url(../img/GitHub-Mark-32px.png) no-repeat 91% 50%,     -ms-linear-gradient(top, #f0f0f0, #ccc); /* For pre-releases of IE 10*/
+  background: url(../img/noise.png), url(../img/GitHub-Mark-32px.png) no-repeat 91% 50%,      -o-linear-gradient(top, #f0f0f0, #ccc); /* For old Opera (11.1 to 12.0) */
+  background: url(../img/noise.png), url(../img/GitHub-Mark-32px.png) no-repeat 91% 50%,         linear-gradient(to bottom, #f0f0f0, #ccc); /* Standard syntax; must be last */
+
+  color: #454545;
+  text-shadow: 0 1px 0 #FFFFFF;
+  box-shadow: inset 0 0 1px white;
+  border: solid #717171 1px;
+  border-radius: 2px;
+}
+.connect:hover {
+  box-shadow: inset 0 0 1px white, 0 0 3px #777;
+}

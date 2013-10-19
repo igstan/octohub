@@ -1,0 +1,19 @@
+{
+  "name": "octohub",
+  "version": "0.1.0",
+  "main": [],
+  "ignore": [
+    "lib",
+    ".DS_Store",
+    ".git",
+    ".gitignore",
+    ".npmignore"
+  ],
+  "dependencies": {
+    "lodash": "2.2.1",
+    "handlebars": "1.0.0",
+    "keymaster": "https://github.com/madrobby/keymaster.git",
+    "jquery": "2.0.3"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,7 @@
+GET     /                controllers.Actions.index
+GET     /github          controllers.Actions.github
+GET     /oauth           controllers.Actions.oauthCallback(code: String)
+GET     /account         controllers.Actions.account
+
+GET     /favicon.ico     controllers.Assets.at(path="/public", file="favicon.ico")
+GET     /*file           controllers.Assets.at(path="/public", file)

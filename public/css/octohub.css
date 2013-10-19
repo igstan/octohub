@@ -1,0 +1,285 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 90%;
+  font-family: menlo, monaco, courier, 'courier new', monospace;
+}
+
+h1 {
+  margin: 3px 0 10px 0;
+  font-weight: normal;
+  font-size: 260%;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  background: #48a1eb;
+  background: #b1cc6e;
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+  padding-left: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+a:link, a:visited {
+  color: #0080ff;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 2px;
+}
+
+.comment-preview {
+  font-size: 90%;
+  margin: 10px 0 45px 0;
+  white-space: pre;
+  padding: 6px 6px 6px 12px;
+  background: #fdf4d6;
+  border-left: dotted #804000 1px;
+  overflow: auto;
+}
+
+.event-list, .patch-info {
+  margin-left: 12px;
+}
+
+.patch-info li {
+  margin: 0;
+}
+
+.event-list > li {
+  padding: 3px;
+  margin-bottom: 30px;
+  margin-right: 5px;
+  clear: both;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.avatar {
+  float: left;
+}
+
+.event-summary {
+  padding-top: 5px;
+  border-top: dotted black 1px;
+  margin: 0 0 0 55px;
+}
+
+.event-commits {
+  font-size: 85%;
+  margin: 10px 0 0 0px;
+}
+
+.event-commits > li {
+  margin-bottom: 6px;
+}
+
+.orgs, .repos {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.orgs li, .repos li {
+  padding: 3px 12px;
+  /*border-radius: 3px;*/
+  cursor: pointer;
+}
+
+.orgs li:hover, .repos li:hover {
+  color: #254a00;
+  background: #b1cc6e;
+  /*text-shadow: 1px 1px 0 #000;*/
+  /*background-image: -moz-linear-gradient(top center, #b1cc6e, #788a4a);*/
+}
+
+.orgs, .repos, .commits, .events, .commit-details {
+  box-shadow: 0 0 15px #555;
+  overflow: auto;
+  background: white;
+}
+
+.commits, .events, .commit-details {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 280px;
+  bottom: 0;
+  right: 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+.orgs {
+  width: 150px;
+}
+
+.resizer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  z-index: 1000;
+  cursor: col-resize;
+}
+
+.resizer:focus {
+  outline: none;
+  background: rgba(0,0,0,0.3);
+}
+
+.repos {
+  display: none;
+  left: 150px;
+  width: 230px;
+}
+
+.events {
+  left: 380px;
+  width: 600px;
+}
+
+.commits {
+  left: 380px;
+  width: 400px;
+}
+
+.commits ul {
+  padding: 5px;
+}
+
+.commits li {
+  padding: 2px 4px;
+  border-radius: 1px;
+}
+
+.commit-details {
+  left: 780px;
+}
+
+.repos li, .commits li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selected {
+  /*background: #57d9ae;
+  color: #ffff66;*/
+  color: #254a00;
+  background: #b1cc6e;
+  /*text-shadow: 1px 1px 0 #000;*/
+}
+
+.addition {
+  background: #dfd;
+}
+
+.deletion {
+  background: #fdd;
+}
+
+pre {
+  margin: 0;
+}
+
+.orgs:focus,
+.repos:focus,
+.commits:focus,
+.events:focus,
+.commit-details:focus {
+  outline: none;
+  background: #ffffee;
+}
+
+.orgs:focus h1,
+.repos:focus h1,
+.commits:focus h1,
+.events:focus h1,
+.commit-details:focus h1 {
+  background: #48a1eb;
+}
+
+.orgs:focus .selected,
+.repos:focus .selected,
+.commits:focus .selected,
+.events:focus .selected,
+.commit-details:focus .selected {
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+  background: #48a1eb;
+}
+
+.orgs { z-index: 100; }
+.repos { z-index: 200; }
+.commits { z-index: 300; }
+.events { z-index: 400; }
+.commit-details { z-index: 500; }
+
+
+.overlay {
+  color: #e0e0e0;
+  display: none;
+  position: absolute;
+  z-index: 2000;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border-radius: 7px;
+  background: rgba(0,0,0,0.85);
+  padding: 5px 0;
+}
+.overlay:focus {
+  outline: none;
+}
+.overlay h1 {
+  color: #e0e0e0;
+  margin: 0 10px;
+  padding: 0;
+  background: transparent;
+  border-bottom: solid #777 1px;
+}
+.overlay table {
+  color: #e0e0e0;
+  font-size: 90%;
+  width: 100%;
+  margin: 10px;
+}
+
+#login p {
+  margin: 10px 20px;
+  white-space: pre;
+}
+#login code {
+  color: #f3e381;
+  font-size: 140%;
+}
+#login input[type=text] {
+  color: #444;
+  padding: 8px;
+  font-size: 200%;
+  font-weight: normal;
+  font-family: menlo, monaco, courier, 'courier new', monospace;
+  border: none;
+  border-radius: 2px;
+  margin: 10px 20px;
+}
+#login input[type=text]:focus {
+  outline: none;
+}
+#login input[type=submit] {
+  font-size: 200%;
+  font-weight: normal;
+  font-family: menlo, monaco, courier, 'courier new', monospace;
+  padding: 20px;
+}

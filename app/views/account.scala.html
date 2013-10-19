@@ -1,0 +1,201 @@
+@(oauth: String)
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OctoHub</title>
+<link href="@routes.Assets.at("css/octohub.css")" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300" rel="stylesheet" type="text/css">
+<script src="@routes.Assets.at("lib/jquery/jquery.min.js")"></script>
+<script src="@routes.Assets.at("lib/lodash/dist/lodash.min.js")"></script>
+<script src="@routes.Assets.at("lib/handlebars/handlebars.js")"></script>
+<script src="@routes.Assets.at("lib/keymaster/keymaster.min.js")"></script>
+<script src="@routes.Assets.at("js/drag.js")"></script>
+<script src="@routes.Assets.at("js/octohub.js")"></script>
+<script>
+var OAUTH_DATA = @Html(oauth);
+
+if (!OAUTH_DATA) {
+  window.location = "/github"
+}
+</script>
+</head>
+<body>
+
+<div id="orgs" class="orgs" tabindex="0" class="panel">
+  <h1>Orgs</h1>
+  <script id="orgs-list-template" type="text/x-handlebars">
+  <ul>
+  {{#each orgs}}
+    {{#if selected}}
+      {{#if isUser}}
+        <li class="selected" data-type="user" data-organization-name="{{login}}">{{login}}</li>
+      {{else}}
+        <li class="selected" data-type="org" data-organization-name="{{login}}">{{login}}</li>
+      {{/if}}
+    {{else}}
+      {{#if isUser}}
+        <li data-type="user" data-organization-name="{{login}}">{{login}}</li>
+      {{else}}
+        <li data-type="org" data-organization-name="{{login}}">{{login}}</li>
+      {{/if}}
+    {{/if}}
+  {{/each}}
+  </ul>
+  </script>
+</div>
+
+<div class="resizer"></div>
+
+<div id="repos" class="repos" tabindex="0" class="panel">
+  <h1>Repos</h1>
+  <script id="repos-list-template" type="text/x-handlebars">
+  <ul>
+  {{#each repos}}
+    {{#if selected}}
+      <li class="selected">{{name}}</li>
+    {{else}}
+      <li>{{name}}</li>
+    {{/if}}
+  {{/each}}
+  </ul>
+  </script>
+</div>
+
+<div class="resizer"></div>
+
+<div id="commits" class="commits" tabindex="0" class="panel">
+  <h1>Commits</h1>
+  <script id="commit-list-template" type="text/x-handlebars">
+  <ul>
+  {{#each commits}}
+    <li data-commit-sha="{{sha}}"><strong>{{shortCommit sha}}</strong> {{commit.message}}</li>
+  {{/each}}
+  </ul>
+  </script>
+</div>
+
+<!-- <div class="resizer"></div>
+
+<div id="events" class="events" tabindex="0">
+  <h1>Events</h1>
+  <script id="event-list-template" type="text/x-handlebars">
+  <ul class="event-list">
+  {{#each events}}
+    <li class="event">
+      <img class="avatar" src="{{actor.avatar_url}}&amp;s=45" alt="" width="45" height="45">
+      <div class="event-summary">
+        <strong>{{actor.login}}</strong> {{eventSummary type payload repo}}
+      </div>
+    </li>
+  {{/each}}
+  </ul>
+  </script>
+
+  <script id="push-event-summary" type="text/x-handlebars">
+  has pushed {{payload.size}} commits to {{repo.name}}
+  <ul class="event-commits">
+  {{#each payload.commits}}
+    <li><a tabindex="-1" href="{{url}}">{{shortCommit sha}}</a> <span class="commit-message">{{message}}</span></li>
+  {{/each}}
+  </ul>
+  </script>
+
+  <script id="commit-comment-event-summary" type="text/x-handlebars">
+  has {{externalLink "commented" payload.comment.html_url}} on commit {{shortCommit payload.comment.commit_id}} in {{repo.name}}
+  <blockquote class="comment-preview">{{ payload.comment.body }}</blockquote>
+  </script>
+</div> -->
+
+<div class="resizer"></div>
+
+<div id="commit-details" class="commit-details" tabindex="0" class="panel">
+  <h1>Commit Info</h1>
+  <script id="commit-details-template" type="text/x-handlebars">
+  <div class="patch-info">
+    <h4>&gt; {{commit.commit.message}}</h4>
+    <ul>
+    {{#each commit.files}}
+      <li>
+        <strong>{{filename}}</strong>
+        {{colorizePatch patch}}
+      </li>
+    {{/each}}
+    </ul>
+  </div>
+  </script>
+</div>
+
+<div id="shortcuts" class="overlay" tabindex="0">
+  <h1>Shortcuts</h1>
+  <table>
+    <tbody>
+      <tr>
+        <td>&larr;</td>
+        <td>move to the left pane, when a pane is focused; resize when a resizer is focused</td>
+      </tr>
+      <tr>
+        <td>&rarr;</td>
+        <td>move to the right pane, when a pane is focused; resize when a resizer is focused</td>
+      </tr>
+      <tr>
+        <td>&darr;</td>
+        <td>move to the next item below (repo, project or commit, depending on the focused pane)</td>
+      </tr>
+      <tr>
+        <td>&uarr;</td>
+        <td>move to the next item above (repo, project or commit, depending on the focused pane)</td>
+      </tr>
+      <tr>
+        <td>ALT+&darr;</td>
+        <td>move to the last item in list</td>
+      </tr>
+      <tr>
+        <td>ALT+&uarr;</td>
+        <td>move to the first item in list</td>
+      </tr>
+      <tr>
+        <td>TAB</td>
+        <td>move to the next focusable item (either a pane or a resizer)</td>
+      </tr>
+      <tr>
+        <td>SHIFT+TAB</td>
+        <td>move to the previous focusable item (either a pane or a resizer)</td>
+      </tr>
+      <tr>
+        <td>ESC</td>
+        <td>hide this help</td>
+      </tr>
+      <tr>
+        <td>?</td>
+        <td>show this help</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="login" class="overlay" tabindex="0">
+  <h1>Log In</h1>
+  <p>Use this cURL command to obtain an OAuth token:</p>
+  <p><code>curl -u 'YOUR_GITHUB_USERNAME_HERE' \
+     -d '{"scopes":["user","repo"],"note":"gh.igstan.ro"}' \
+     https://api.github.com/authorizations</code></p>
+  <div>
+    <input type="text" id="token" placeholder="Token" size="40">
+    <input type="submit" id="login-btn" value="Log In">
+  </div>
+  <p>The token will be stored in <code>localStorage</code>.</p>
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-44978173-1', 'octohub.herokuapp.com');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>
